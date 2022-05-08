@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    @State private var score = 0
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -28,10 +29,12 @@ struct ContentView: View {
                     .font(.largeTitle.weight(.bold))
                     .foregroundColor(.white)
                 
-                VStack(spacing: 15) {
+                Spacer()
+                
+                VStack(spacing: 20) {
                     VStack {
                         Text("Tap the flag of")
-                            .font(.subheadline.weight(.heavy))
+                            .font(.title3.weight(.heavy))
                             .foregroundStyle(.secondary)
                         Text(countries[correctAnswer])
                             .font(.largeTitle.weight(.semibold))
@@ -43,10 +46,11 @@ struct ContentView: View {
                         } label: {
                             Image(countries[number])
                                 .renderingMode(.original)
-                                .clipShape(Capsule())
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
                                 .shadow(radius: 5)
                         }
                     }
+                    Text("") // just to create some space below
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
@@ -56,7 +60,7 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 
-                Text("Score: ???")
+                Text("Score: \(score)")
                     .font(.title.bold())
                     .foregroundColor(.white)
                 
@@ -67,13 +71,14 @@ struct ContentView: View {
         .alert(scoreTitle, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
-            Text("Your score is ???")
+            Text("Your score is \(score)")
         }
     }
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct"
+            score += 1
         } else {
             scoreTitle = "Wrong"
         }
