@@ -8,5 +8,5 @@ The purpose of this simple game is to guess a country flag out of three displaye
 
 ## Project Screen
 
-<img src="" width="300">
+<img src="https://github.com/ygeras/GuessTheFlag/blob/9f8dec643c52b5773cd797534ea5571311c2ee41/images/%20simulator.gif" width="300">
 
