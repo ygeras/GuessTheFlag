@@ -48,10 +48,7 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
-                                .renderingMode(.original)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .shadow(radius: 5)
+                            FlagImage(name: countries[number])
                         }
                     }
                     Text("") // just to create some space below
